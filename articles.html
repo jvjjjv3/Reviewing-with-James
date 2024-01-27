@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviewing with James - Articles</title>
     <link rel="stylesheet" href="style.css">
-    
+    <style>
+        /* Additional CSS for pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -23,29 +33,72 @@
     <section class="main-content">
         <article>
             <h2>Articles</h2>
-            <ul>
-                <li><a href="blog/blogposttest.html">Take Me Out to the Ball Game</a></li>
-                <li><a href="blog/secondarticle.html">Here We Go!</a></li> <!-- Add your second article here -->
-                <li><a href="blog/thirdarticle.html">Diving into Bikini Bottom</a></li>
-                <li><a href="blog/fourtharticle.html">A Satisfying Craving</a></li>
-                <li><a href="blog/halloween2023.html">Have a Frightful Halloween</a></li>
-                <li><a href="blog/toontownonline.html">Revisiting Disney's Toontown Online</a></li>
-                <li><a href="blog/soccer.html">Studying the Beautiful Game</a></li>
-                <li><a href="blog/minecraft2023.html">Creepers, Skeletons, and Zombies, Oh My!</a></li>
-                <li><a href="blog/fnafblogpost.html">Surviving the Animatronics: A FNaF Insider</a></li>
-                <li><a href="blog/charlieandthechocolatefactory.html">The Irresistible Charm of Charlie and the Chocolate Factory</a></li>
-                <li><a href="blog/eminemnotafraid.html">Songbird’s Flight through Fear’s Tempest</a></li>
-                 <li><a href="blog/basketball.html">Coming in with a Slam Dunk</a></li>
-                <li><a href="blog/newyears2024.html">Have a Happy New Year!</a></li>
-                <li><a href="blog/dominospizza.html">Exploring Pizza Delights with Domino’s</a></li>
-                <li><a href="blog/roblox2024.html">Block by Block: Decoding Roblox Wonders</a></li>
-                
-            </ul>
+            <div class="scrollable-container" style="max-height: 300px; overflow-y: scroll;">
+                <ul class="all-articles">
+                    <!-- Articles from the original code -->
+                    <li><a href="blog/roblox2024.html">Block by Block: Decoding Roblox Wonders</a></li>
+                    <li><a href="blog/dominospizza.html">Exploring Pizza Delights with Domino’s</a></li>
+                    <li><a href="blog/newyears2024.html">Have a Happy New Year!</a></li>
+                    <li><a href="blog/basketball.html">Coming in with a Slam Dunk</a></li>
+                    <li><a href="blog/eminemnotafraid.html">Songbird’s Flight through Fear’s Tempest</a></li>
+                    <li><a href="blog/charlieandthechocolatefactory.html">The Irresistible Charm of Charlie and the Chocolate Factory</a></li>
+                    <li><a href="blog/fnafblogpost.html">Surviving the Animatronics: A FNaF Insider</a></li>
+                    <li><a href="blog/minecraft2023.html">Creepers, Skeletons, and Zombies, Oh My!</a></li>
+                    <li><a href="blog/soccer.html">Studying the Beautiful Game</a></li>
+                    <li><a href="blog/toontownonline.html">Revisiting Disney's Toontown Online</a></li>
+                    <li><a href="blog/halloween2023.html">Have a Frightful Halloween</a></li>
+                    <li><a href="blog/fourtharticle.html">A Satisfying Craving</a></li>
+                    <li><a href="blog/thirdarticle.html">Diving into Bikini Bottom</a></li>
+                    <li><a href="blog/secondarticle.html">Here We Go!</a></li>
+                    <li><a href="blog/blogposttest.html">Take Me Out to the Ball Game</a></li>
+                </ul>
+            </div>
+            <!-- Pagination -->
+            <div class="pagination">
+                <button onclick="prevPage()">Previous</button>
+                <button onclick="nextPage()">Next</button>
+            </div>
         </article>
     </section>
     <footer>
         <p>&copy; 2024 Reviewing with James. All rights reserved.</p>
     </footer>
-    
+
+    <script>
+        // JavaScript for pagination
+        let currentPage = 1;
+        const articlesPerPage = 5;
+        const articles = document.querySelectorAll('.all-articles li');
+        const totalArticles = articles.length;
+        const totalPages = Math.ceil(totalArticles / articlesPerPage);
+
+        function showPage(page) {
+            const startIndex = (page - 1) * articlesPerPage;
+            const endIndex = startIndex + articlesPerPage;
+            articles.forEach((article, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    article.style.display = 'block';
+                } else {
+                    article.style.display = 'none';
+                }
+            });
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        showPage(currentPage);
+    </script>
 </body>
 </html>
